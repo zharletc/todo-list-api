@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: todo-list
+        restart: always
+        ports:
+            - "8200:80"
+        volumes:
+            - F:\Projex\Talenta Navigator\todo-list\:/var/www
+        command: "php artisan serve --host 0.0.0.0 --port 80"
+        env_file: .env
+        # environment:
+        #   - DB_HOST=host.docker.internal
+    db:
+        image: mysql
+        container_name: todo-list-db
+        restart: always
+        ports:
+        - "3309:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_DATABASE: 'todo_list'
+            MYSQL_USER: 'app'
+            MYSQL_PASSWORD: 'app'
+
+    # redis:
+    #     image: redis:latest
+    #     container_name: hris-redis
+    #     ports:
+    #     - "6379:6379" # Port default Redis
+    #     # volumes:
+    #     # - redis_data:/data
+    #     command: ["redis-server", "--requirepass", "redis", "--appendonly", "yes"]
