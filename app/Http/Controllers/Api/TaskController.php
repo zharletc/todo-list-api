@@ -14,7 +14,38 @@ class TaskController extends ApiController
 {
     public function index()
     {
-        $tasks = Task::orderBy('created_at', 'desc')->get();
+        $tasks = Task::query();
+
+        if (@request()->title) {
+            $tasks = $tasks->where('title', 'like', '%' . request()->title . '%');
+        }
+        if (@request()->assignee) {
+            $assignee = explode(',', request()->assignee);
+            $tasks = $tasks->whereIn('assignee', $assignee);
+        }
+        if (@request()->status) {
+            $status = explode(',', request()->status);
+            $tasks = $tasks->whereIn('status', $status);
+        }
+        if (@request()->priority) {
+            $priority = explode(',', request()->priority);
+            $tasks = $tasks->whereIn('priority', $priority);
+        }
+        if (@request()->start) {
+            $tasks = $tasks->where('due_date', '>=', request()->start);
+        }
+        if (@request()->end) {
+            $tasks = $tasks->where('due_date', '<=', request()->end);
+        }
+        if (@request()->min) {
+            $tasks = $tasks->where('time_tracked', '>=', request()->min);
+        }
+        if (@request()->max) {
+            $tasks = $tasks->where('time_tracked', '<=', request()->max);
+        }
+
+        $tasks = $tasks->orderBy('created_at', 'desc')->get();
+
         if (request()->download) {
             $data = new TaskExport($tasks);
             return $data->download('tasks.xlsx');
