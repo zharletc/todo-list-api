@@ -43,25 +43,21 @@ docker exec -it todo-list-app bash
 Lalu jalankan perintah berikut di dalam container:
 
 ```bash
-composer install
 cp .env.example .env
 php artisan key:generate
 ```
-
-Edit `.env` jika diperlukan, khususnya bagian `DB_HOST=db`.
 
 ### 🔃 Jalankan Migrasi dan Seeder (opsional)
 
 ```bash
 php artisan migrate
-php artisan db:seed
 ```
 
 ## 📬 3. Import Postman Collection
 
 1. Buka [Postman](https://www.postman.com/downloads/)
 2. Pilih `Import` → `File` → pilih file `postman_collection.json` dari folder `/postman/` atau folder lain yang tersedia
-3. Set environment jika dibutuhkan (`http://localhost:8000` sebagai base URL)
+3. Set environment jika dibutuhkan (`http://localhost:8200` sebagai base URL)
 
 ## 🧪 4. Menjalankan Testing
 
