@@ -77,8 +77,8 @@ php artisan test --filter=TaskFilterTest
 
 ## 👥 5. Akses
 
-* API: [http://localhost:8000](http://localhost:8000)
-* PhpMyAdmin (jika disediakan): [http://localhost:8080](http://localhost:8080)
+* API: [http://localhost:8200](http://localhost:8200)
+* PhpMyAdmin (jika disediakan): [http://localhost:8200](http://localhost:8200)
 
 ---
 
