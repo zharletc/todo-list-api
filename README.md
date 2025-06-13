@@ -84,10 +84,6 @@ php artisan test --filter=TaskFilterTest
 
 ## 📟 Catatan
 
-* File Postman Collection tersedia di folder `postman/`
+* File Postman Collection tersedia di file `Todo List API.postman_collection.json`
 * Pastikan volume Docker tidak menyimpan sisa data lama (`docker volume prune` jika perlu)
-* Jika pakai Laravel Excel untuk export, pastikan package sudah terinstal:
-
-```bash
-composer require maatwebsite/excel
-```
+* Jika pakai Laravel Excel untuk export, pastikan package sudah terinstal semua
