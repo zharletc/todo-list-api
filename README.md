@@ -37,7 +37,7 @@ Pastikan port `8000` (Laravel) dan `3306` (MySQL) tidak bentrok.
 Masuk ke container Laravel:
 
 ```bash
-docker exec -it todo-list-app bash
+docker exec -it todo-list bash
 ```
 
 Lalu jalankan perintah berikut di dalam container:
