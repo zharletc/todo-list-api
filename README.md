@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# 📝 Todo List API (Laravel + Docker)
+# 📝 Todo List API (Laravel + Docker) By Azhar Ogi
 
 Proyek ini adalah API Todo List menggunakan Laravel dan MySQL, dijalankan dengan Docker.
 
