@@ -26,12 +26,8 @@ services:
             MYSQL_DATABASE: 'todo_list'
             MYSQL_USER: 'app'
             MYSQL_PASSWORD: 'app'
+        volumes:
+        - mysql_data:/var/lib/mysql
 
-    # redis:
-    #     image: redis:latest
-    #     container_name: hris-redis
-    #     ports:
-    #     - "6379:6379" # Port default Redis
-    #     # volumes:
-    #     # - redis_data:/data
-    #     command: ["redis-server", "--requirepass", "redis", "--appendonly", "yes"]
+volumes:
+  mysql_data:

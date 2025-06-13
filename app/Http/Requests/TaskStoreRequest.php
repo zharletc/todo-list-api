@@ -25,7 +25,7 @@ class TaskStoreRequest extends FormRequest
             'title' => 'required|string',
             'assignee' => 'nullable|string',
             'due_date' => 'required|date|date_format:Y-m-d|after_or_equal:today',
-            // 'time_tracked' => 'required|integer',
+            'time_tracked' => 'nullable|integer',
             'status' => 'nullable|in:pending,open,in_progress,completed',
             'priority' => 'required|in:low,medium,high',
         ];
@@ -36,6 +36,7 @@ class TaskStoreRequest extends FormRequest
     {
         $this->merge([
             'status' => $this->status ?? 'pending',
+            'time_tracked' => $this->time_tracked ?? 0
         ]);
     }
 }

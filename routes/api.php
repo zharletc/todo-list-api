@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 // FORGOT PASSWORD
 Route::resource('/tasks', TaskController::class);
+Route::get('/task-charts', [TaskController::class, 'chart']);
