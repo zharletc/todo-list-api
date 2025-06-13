@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "8349fab6-946a-4ef7-a2b4-79e1b25c03ae",
+		"name": "Todo List API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5826135",
+		"_collection_link": "https://blue-crescent-871167.postman.co/workspace/Todo-List~19385d36-cc1e-44c7-9eb1-f6f8a9e97bf2/collection/5826135-8349fab6-946a-4ef7-a2b4-79e1b25c03ae?action=share&source=collection_link&creator=5826135"
+	},
+	"item": [
+		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8200/api/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "download",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Update",
+									"disabled": true
+								},
+								{
+									"key": "assignee",
+									"value": "John,Masbroo",
+									"description": "allow multiple",
+									"disabled": true
+								},
+								{
+									"key": "start",
+									"value": "2025-06-01",
+									"disabled": true
+								},
+								{
+									"key": "end",
+									"value": "2025-06-20",
+									"disabled": true
+								},
+								{
+									"key": "min",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "max",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "open,pending",
+									"description": "allow multiple",
+									"disabled": true
+								},
+								{
+									"key": "priority",
+									"value": "medium",
+									"description": "allow multiple",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Update Schedule pada fitur BBB\",\r\n    \"assignee\": \"Masbroo\",\r\n    \"due_date\": \"2025-07-13\",\r\n    \"time_tracked\": 0, //in seconds\r\n    \"status\": \"pending\",\r\n    \"priority\": \"high\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8200/api/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Update Schedule pada fitur CCC\",\r\n    \"assignee\": \"Abangkuh X\",\r\n    \"due_date\": \"2025-07-13\",\r\n    \"time_tracked\": 2000, //in seconds\r\n    \"status\": \"in_progress\",\r\n    \"priority\": \"medium\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8200/api/tasks/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"tasks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "charts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8200/api/task-charts?type=assignee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"task-charts"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "assignee",
+									"description": "priority / status / assignee"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
