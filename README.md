@@ -7,55 +7,91 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# 📝 Todo List API (Laravel + Docker)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Proyek ini adalah API Todo List menggunakan Laravel dan MySQL, dijalankan dengan Docker.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🐳 1. Menjalankan Project dengan Docker
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Pastikan kamu sudah menginstal:
 
-## Learning Laravel
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### ✨ Jalankan Docker
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+docker compose up -d --build
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 📦 Struktur Docker
 
-## Laravel Sponsors
+* `app`: container untuk Laravel
+* `db`: container untuk MySQL
+* `phpmyadmin`: akses database via browser (opsional)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Pastikan port `8000` (Laravel) dan `3306` (MySQL) tidak bentrok.
 
-### Premium Partners
+## 🛠️ 2. Setup Laravel
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Masuk ke container Laravel:
 
-## Contributing
+```bash
+docker exec -it todo-list-app bash
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Lalu jalankan perintah berikut di dalam container:
 
-## Code of Conduct
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Edit `.env` jika diperlukan, khususnya bagian `DB_HOST=db`.
 
-## Security Vulnerabilities
+### 🔃 Jalankan Migrasi dan Seeder (opsional)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-## License
+## 📬 3. Import Postman Collection
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Buka [Postman](https://www.postman.com/downloads/)
+2. Pilih `Import` → `File` → pilih file `postman_collection.json` dari folder `/postman/` atau folder lain yang tersedia
+3. Set environment jika dibutuhkan (`http://localhost:8000` sebagai base URL)
+
+## 🧪 4. Menjalankan Testing
+
+Jalankan seluruh pengujian fitur:
+
+```bash
+php artisan test
+```
+
+Atau hanya untuk file tertentu:
+
+```bash
+php artisan test --filter=TaskFilterTest
+```
+
+> Gunakan trait `DatabaseTransactions` agar data uji otomatis dibersihkan setelah test.
+
+## 👥 5. Akses
+
+* API: [http://localhost:8000](http://localhost:8000)
+* PhpMyAdmin (jika disediakan): [http://localhost:8080](http://localhost:8080)
+
+---
+
+## 📟 Catatan
+
+* File Postman Collection tersedia di folder `postman/`
+* Pastikan volume Docker tidak menyimpan sisa data lama (`docker volume prune` jika perlu)
+* Jika pakai Laravel Excel untuk export, pastikan package sudah terinstal:
+
+```bash
+composer require maatwebsite/excel
+```
